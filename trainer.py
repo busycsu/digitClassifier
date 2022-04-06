@@ -132,8 +132,8 @@ def main():
     # if args.save_model:
     #     torch.save(model.state_dict(), "mnist_cnn.pt")
 
-    dummy_input = torch.randn(1, 1, 28, 28)
-    model.to('cpu')
+    dummy_input = torch.randn(64, 1, 28, 28, device="cuda")
+    # model.to('cpu')
     torch.onnx.export(
         model, dummy_input, "mnist_cnn.onnx", verbose=True, export_params=True, input_names=['input'], output_names=['output']
     )
